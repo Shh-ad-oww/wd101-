@@ -1,9 +1,43 @@
-<html>
-  <head>
-    Registration form
-  </head>
-  <body>
-    <h1> WD101 registration form </h1>
-    <p> Here s where I have kept the logic of my registration form. </p>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+</head>
+<body>
+
+  <form id="registrationForm">
+    <table id="userTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Password</th>
+          <th>Dob</th>
+          <th>Accepted terms?</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email">
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password">
+
+    <label for="dob">Dob:</label>
+    <input type="date" id="dob" name="dob">
+
+    <label for="acceptedTerms">Accept Terms:</label>
+    <input type="checkbox" id="acceptedTerms" name="acceptedTerms">
+
+    <button type="submit">Submit</button>
+  </form>
+
+</body>
 </html>
