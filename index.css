@@ -52,10 +52,10 @@ body {
 **/
 
 form {
-  display: flex;
+  display: block;
   flex-direction: column;
   justify-content: center;
-  width: 45%;
+  width: 100%;
   /* max-width: 400px; */
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   padding: 50px;
