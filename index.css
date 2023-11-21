@@ -12,6 +12,10 @@ body {
   /*display: flex;*/
   flex-direction: row;
 }
+.parts {
+  width: 50%;
+  margin: 0 auto;
+}
 
 /**
 * ! style rules for content section
