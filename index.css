@@ -17,7 +17,6 @@ h1 {
     margin-top: 10px;
     border: 1px solid;
     padding: 5px;
-    background-color: rgb(145, 180, 210);
 }
 
 .block {
@@ -26,8 +25,8 @@ h1 {
     margin-top: 3px;
 }
 
-.table {
-    border: 2px solid;
+.table, td {
+    border: 1px solid black;
     margin: auto;
 }
 
@@ -46,5 +45,15 @@ h1 {
 }
 
 .submit {
-    background-color: rgb(4, 213, 144);
+    margin-top: 15px;
+    width: 100%;
+  height: 45px;
+  background-color: #f2796e;
+  border: 2px solid #f2796e;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.1s ease;
 }
