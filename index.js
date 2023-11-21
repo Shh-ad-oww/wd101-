@@ -1,37 +1,67 @@
-let id = (id) => document.getElementById(id);
+function minDate() {
+    const today = new Date();
+    return new Date(today.getFullYear() - 55, today.getMonth(), today.getDate()).toISOString().split('T')[0];
+}
 
-let classes = (classes) => document.getElementsByClassName(classes);
+function maxDate() {
+    const today = new Date();
+    return new Date(today.getFullYear() - 18, today.getMonth(), today.getDate()).toISOString().split('T')[0];
+}
 
-let username = id("username"),
-  email = id("email"),
-  password = id("password"),
-  form = id("form"),
-  errorMsg = classes("error"),
-  successIcon = classes("success-icon"),
-  failureIcon = classes("failure-icon");
+const dobInput = document.getElementById('dob');
+dobInput.setAttribute('min', minDate());
+dobInput.setAttribute('max', maxDate());
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
+let userForm = document.getElementById("userForm");
 
-  engine(username, 0, "Username cannot be blank");
-  engine(email, 1, "Email cannot be blank");
-  engine(password, 2, "Password cannot be blank");
-});
+const getEntries = () => {
+    let entries = localStorage.getItem("userEntries");
+    if (entries) {
+        entries = JSON.parse(entries);
+    } else {
+        entries = [];
+    }
+    return entries;
+}
 
-let engine = (id, serial, message) => {
-  if (id.value.trim() === "") {
-    errorMsg[serial].innerHTML = message;
-    id.style.border = "2px solid red";
+let userEntries = getEntries();
 
-    // icons
-    failureIcon[serial].style.opacity = "1";
-    successIcon[serial].style.opacity = "0";
-  } else {
-    errorMsg[serial].innerHTML = "";
-    id.style.border = "2px solid green";
+const dispEntries = () => {
+    const entries = getEntries();
+    const tableEntries = entries.map((entry) => {
+        const name = `<td class="bor">${entry.name}</td>`;
+        const email = `<td class="bor">${entry.email}</td>`;
+        const password = `<td class="bor">${entry.password}</td>`;
+        const dateOfBirth = `<td class="bor">${entry.dob}</td>`; 
+        const atnc = `<td class="bor">${entry.atnc}</td>`;
 
-    // icons
-    failureIcon[serial].style.opacity = "0";
-    successIcon[serial].style.opacity = "1";
-  }
-};
+        const row = `<tr>${name} ${email} ${password} ${dateOfBirth} ${atnc}</tr>`;
+        return row;
+    }).join("\n");
+
+    const table = `<h1>Entries</h1><table class="table"><tr class="bor"><th class="bor">Name</th><th class="bor">Email</th><th class="bor">Password</th><th class="bor">Dob</th><th class="bor">Accepted terms?</th></tr>${tableEntries}</table>`;
+
+    let details = document.getElementById("tableView");
+    details.innerHTML = table;
+}
+
+dispEntries();
+
+const formSubmit = (event) => {
+    event.preventDefault();
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const dateOfBirth = document.getElementById("dob").value; 
+    const atnc = document.getElementById("atnc").checked;
+
+    const entry = {
+        name, email, password, dob: dateOfBirth, atnc 
+    }
+
+    userEntries.push(entry);
+    localStorage.setItem("userEntries", JSON.stringify(userEntries)); 
+    dispEntries();
+}
+
+userForm.addEventListener("submit", formSubmit);
