@@ -39,7 +39,7 @@ const dispEntries = () => {
         return row;
     }).join("\n");
 
-    const table = `<h1>Entries</h1><table class="table"><tr class="bor"><th class="bor">Name</th><th class="bor">Email</th><th class="bor">Password</th><th class="bor">Dob</th><th class="bor">Accepted terms?</th></tr>${tableEntries}</table>`;
+    const table = `<h1>Entries</h1><table class="styl-table"><tr><th>Name</th><th>Email</th><th>Password</th><th>Dob</th><th>Accepted terms?</th></tr>${tableEntries}</table>`;
 
     let details = document.getElementById("tableView");
     details.innerHTML = table;
